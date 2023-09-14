@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kasadara Hiring Form</title>
+</head>
+<body>
+    <h1>Kasadara Hiring Form</h1>
+    <form action="your_power_automate_flow_endpoint_here" method="POST" enctype="multipart/form-data">
+        <!-- Name -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <!-- Phone Number -->
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required><br><br>
+
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <!-- Role -->
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value=".NET">.NET</option>
+            <option value="Angular">Angular</option>
+            <option value="SE - Trainee">SE - Trainee</option>
+            <option value="HR/PMO/Management">HR/PMO/Management</option>
+            <option value="Arc GIS">Arc GIS</option>
+            <option value="Marketing">Marketing</option>
+            <option value="QA">QA</option>
+            <option value="Finance">Finance</option>
+            <option value="Java">Java</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+
+        <!-- Experience (In Years) -->
+        <label for="experience">Experience (In Years):</label>
+        <input type="number" id="experience" name="experience" required><br><br>
+
+        <!-- Resume -->
+        <label for="resume">Resume:</label>
+        <input type="file" id="resume" name="resume" accept=".pdf, .doc, .docx" required><br><br>
+
+        <!-- Notice Period / Tentative Joining Date -->
+        <label for="notice">Notice Period / Tentative Joining Date:</label>
+        <input type="text" id="notice" name="notice" required><br><br>
+
+        <!-- Location -->
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required><br><br>
+
+        <!-- Expected CTC -->
+        <label for="ctc">Expected CTC:</label>
+        <input type="text" id="ctc" name="ctc" required><br><br>
+
+        <!-- Tell us about yourself -->
+        <label for="about"><strong>Tell us about yourself. 
+            And, how did you know about the us?<strong>
+                
+                We would like to know you better :)
+        </label><br>
+        <textarea id="about" name="about" rows="4" cols="50"></textarea><br><br>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
