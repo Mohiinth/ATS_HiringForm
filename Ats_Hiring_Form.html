@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Kasadara Hiring Form</h1>
-    <form action="https://prod-165.westus.logic.azure.com:443/workflows/ec672ac489dd46b3a4f8dc657b1778c1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=DJjt8ejsDhWpDASK97AuiL2L1cmKS05zre8jg03PZgU" method="POST" enctype="multipart/form-data">
+    <form id="hiringForm">
         <!-- Name -->
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
@@ -21,6 +21,7 @@
         <!-- Role -->
         <label for="role">Role:</label>
         <select id="role" name="role">
+            <option value="">Select Role</option> <!-- Default option -->
             <option value=".NET">.NET</option>
             <option value="Angular">Angular</option>
             <option value="SE - Trainee">SE - Trainee</option>
@@ -50,19 +51,57 @@
         <input type="text" id="location" name="location" required><br><br>
 
         <!-- Expected CTC -->
-        <label for="expctc">Expected CTC:</label>
+        <label for="ctc">Expected CTC:</label>
         <input type="text" id="ctc" name="ctc" required><br><br>
 
         <!-- Tell us about yourself -->
         <label for="about"><strong>Tell us about yourself. 
-            And, how did you know about the us?<strong>
-                
-                We would like to know you better :)
+            And, how did you know about us?</strong><br>
+            We would like to know you better :)
         </label><br>
         <textarea id="about" name="about" rows="4" cols="50"></textarea><br><br>
 
         <!-- Submit Button -->
-        <input type="submit" value="Submit">
+        <input type="button" value="Submit" onclick="submitForm()">
     </form>
+
+    <script>
+        function submitForm() {
+            // Create a JavaScript object to store form data
+            var formData = {
+                name: document.getElementById("name").value,
+                phone: document.getElementById("phone").value,
+                email: document.getElementById("email").value,
+                role: document.getElementById("role").value,
+                experience: document.getElementById("experience").value,
+                notice: document.getElementById("notice").value,
+                location: document.getElementById("location").value,
+                ctc: document.getElementById("ctc").value,
+                about: document.getElementById("about").value
+            };
+
+            // Convert the JavaScript object to JSON
+            var jsonData = JSON.stringify(formData);
+
+            // Send a POST request with JSON data to your Power Automate endpoint
+            fetch('https://prod-165.westus.logic.azure.com:443/workflows/ec672ac489dd46b3a4f8dc657b1778c1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=DJjt8ejsDhWpDASK97AuiL2L1cmKS05zre8jg03PZgU', {
+                method: 'POST',
+                body: jsonData,
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(function (response) {
+                if (response.ok) {
+                    alert("Form submitted successfully!");
+                    // Optionally, reset the form
+                    document.getElementById("hiringForm").reset();
+                } else {
+                    alert("Form submission failed. Please try again.");
+                }
+            }).catch(function (error) {
+                alert("An error occurred: " + error.message);
+            });
+        }
+    </script>
 </body>
 </html>
