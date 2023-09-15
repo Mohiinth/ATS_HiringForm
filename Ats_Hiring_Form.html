@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Kasadara Hiring Form</h1>
-    <form id="hiringForm">
+    <form id="hiringForm" action="https://prod-165.westus.logic.azure.com:443/workflows/ec672ac489dd46b3a4f8dc657b1778c1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=DJjt8ejsDhWpDASK97AuiL2L1cmKS05zre8jg03PZgU" method="POST" enctype="multipart/form-data">
         <!-- Name -->
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
@@ -62,11 +62,13 @@
         <textarea id="about" name="about" rows="4" cols="50"></textarea><br><br>
 
         <!-- Submit Button -->
-        <input type="button" value="Submit" onclick="submitForm()">
+        <input type="submit" value="Submit">
     </form>
 
     <script>
-        function submitForm() {
+        document.getElementById("hiringForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
             // Create a JavaScript object to store form data
             var formData = {
                 name: document.getElementById("name").value,
@@ -84,8 +86,8 @@
             var jsonData = JSON.stringify(formData);
 
             // Send a POST request with JSON data to your Power Automate endpoint
-            fetch('https://prod-165.westus.logic.azure.com:443/workflows/ec672ac489dd46b3a4f8dc657b1778c1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=DJjt8ejsDhWpDASK97AuiL2L1cmKS05zre8jg03PZgU', {
-                method: 'POST',
+            fetch(this.action, {
+                method: this.method,
                 body: jsonData,
                 headers: {
                     'Content-Type': 'application/json'
@@ -101,7 +103,7 @@
             }).catch(function (error) {
                 alert("An error occurred: " + error.message);
             });
-        }
+        });
     </script>
 </body>
 </html>
