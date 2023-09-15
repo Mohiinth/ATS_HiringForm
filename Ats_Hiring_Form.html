@@ -5,7 +5,7 @@
 </head>
 <body>
     <h1>Kasadara Hiring Form</h1>
-    <form action="your_power_automate_flow_endpoint_here" method="POST" enctype="multipart/form-data">
+    <form action="https://prod-165.westus.logic.azure.com:443/workflows/ec672ac489dd46b3a4f8dc657b1778c1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=DJjt8ejsDhWpDASK97AuiL2L1cmKS05zre8jg03PZgU" method="POST" enctype="multipart/form-data">
         <!-- Name -->
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
@@ -50,7 +50,7 @@
         <input type="text" id="location" name="location" required><br><br>
 
         <!-- Expected CTC -->
-        <label for="ctc">Expected CTC:</label>
+        <label for="expctc">Expected CTC:</label>
         <input type="text" id="ctc" name="ctc" required><br><br>
 
         <!-- Tell us about yourself -->
