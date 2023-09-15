@@ -69,13 +69,10 @@
         document.getElementById("hiringForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent the default form submission
 
-            // Create a FormData object to handle the form data
-            var formData = new FormData(this);
-
-            // Send a POST request with FormData to your Power Automate endpoint
+            // Send the form data directly without JSON conversion
             fetch(this.action, {
                 method: this.method,
-                body: formData
+                body: new FormData(this)
             }).then(function (response) {
                 if (response.ok) {
                     alert("Form submitted successfully!");
