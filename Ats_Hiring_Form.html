@@ -5,23 +5,19 @@
 </head>
 <body>
     <h1>Kasadara Hiring Form</h1>
-    <form id="hiringForm" action="https://prod-165.westus.logic.azure.com:443/workflows/ec672ac489dd46b3a4f8dc657b1778c1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=DJjt8ejsDhWpDASK97AuiL2L1cmKS05zre8jg03PZgU" method="POST" enctype="multipart/form-data">
-        <!-- Name -->
+    <form id="hiringForm" enctype="multipart/form-data">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
 
-        <!-- Phone Number -->
         <label for="phone">Phone Number:</label>
         <input type="tel" id="phone" name="phone" required><br><br>
 
-        <!-- Email -->
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required><br><br>
 
-        <!-- Role -->
         <label for="role">Role:</label>
-        <select id="role" name="role">
-            <option value="">Select Role</option> <!-- Default option -->
+        <select id="role" name="role" required>
+            <option value="Select Role">Select Role</option>
             <option value=".NET">.NET</option>
             <option value="Angular">Angular</option>
             <option value="SE - Trainee">SE - Trainee</option>
@@ -34,57 +30,66 @@
             <option value="Other">Other</option>
         </select><br><br>
 
-        <!-- Experience (In Years) -->
         <label for="experience">Experience (In Years):</label>
         <input type="number" id="experience" name="experience" required><br><br>
 
-        <!-- Resume -->
-        <label for="resume">Resume:</label>
-        <input type="file" id="resume" name="resume" accept=".pdf, .doc, .docx" required><br><br>
+        <label for="resume">Resume (PDF or Word):</label>
+        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required><br><br>
 
-        <!-- Notice Period / Tentative Joining Date -->
-        <label for="notice">Notice Period / Tentative Joining Date:</label>
-        <input type="text" id="notice" name="notice" required><br><br>
+        <label for="noticePeriod">Notice Period / Tentative Joining Date:</label>
+        <input type="text" id="noticePeriod" name="noticePeriod" required><br><br>
 
-        <!-- Location -->
         <label for="location">Location:</label>
         <input type="text" id="location" name="location" required><br><br>
 
-        <!-- Expected CTC -->
-        <label for="ctc">Expected CTC:</label>
-        <input type="text" id="ctc" name="ctc" required><br><br>
+        <label for="expectedCTC">Expected CTC:</label>
+        <input type="text" id="expectedCTC" name="expectedCTC" required><br><br>
 
-        <!-- Tell us about yourself -->
-        <label for="about"><strong>Tell us about yourself. 
-            And, how did you know about us?</strong><br>
-            We would like to know you better :)
-        </label><br>
-        <textarea id="about" name="about" rows="4" cols="50"></textarea><br><br>
+        <label for="aboutYourself">Tell us about yourself:</label>
+        <textarea id="aboutYourself" name="aboutYourself" rows="4" required></textarea><br><br>
 
-        <!-- Submit Button -->
-        <input type="submit" value="Submit">
+        <label for="howDidYouKnow">How did you know about us?</label>
+        <textarea id="howDidYouKnow" name="howDidYouKnow" rows="4" required></textarea><br><br>
+
+        <button type="submit">Submit</button>
     </form>
 
     <script>
-        document.getElementById("hiringForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            // Send the form data directly without JSON conversion
-            fetch(this.action, {
-                method: this.method,
-                body: new FormData(this)
-            }).then(function (response) {
-                if (response.ok) {
-                    alert("Form submitted successfully!");
-                    // Optionally, reset the form
-                    document.getElementById("hiringForm").reset();
-                } else {
-                    alert("Form submission failed. Please try again.");
-                }
-            }).catch(function (error) {
-                alert("An error occurred: " + error.message);
-            });
+        document.getElementById("hiringForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            submitForm();
         });
+
+        function submitForm() {
+            var formData = new FormData(document.getElementById("hiringForm"));
+            var jsonData = {};
+
+            formData.forEach(function (value, key) {
+                jsonData[key] = value;
+            });
+
+            var url = "https://prod-165.westus.logic.azure.com:443/workflows/ec672ac489dd46b3a4f8dc657b1778c1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=DJjt8ejsDhWpDASK97AuiL2L1cmKS05zre8jg03PZgU";
+
+            fetch(url, {
+                method: "POST",
+                body: JSON.stringify(jsonData),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+                .then(function (response) {
+                    if (response.ok) {
+                        alert("Form submitted successfully!");
+                        document.getElementById("hiringForm").reset();
+                    } else {
+                        alert("Form submission failed. Please try again later.");
+                    }
+                })
+                .catch(function (error) {
+                    console.error("Error:", error);
+                    alert("An error occurred. Please try again later.");
+                });
+        }
     </script>
 </body>
 </html>
