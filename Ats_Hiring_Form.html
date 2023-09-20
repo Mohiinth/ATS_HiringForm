@@ -1,95 +1,352 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
+
     <title>Kasadara Hiring Form</title>
+
+    <style>
+
+         body {
+
+            margin: 0;
+
+            padding: 0;
+
+           
+
+        }
+
+       
+
+        .container {
+
+            background-color:rgb(38, 160, 247); /* Set the background color outside of the form */
+
+            color: white; /* Set the text color to white for better visibility */
+
+            font-family: Arial, sans-serif;
+
+            width:100%;
+
+            height:100%;
+
+            padding:100px 0px;
+
+        }
+
+        form {
+
+            width: 40%;
+
+            margin: auto;
+
+            font-family: Arial, sans-serif;
+
+            color:black;
+
+            border: 2px solid black; /*#cccccc; Add a border to the form */
+
+            padding: 20px; /* Add some padding for spacing */
+
+            background-color: white;
+
+            padding: 50px;
+
+            border-radius: 10px;
+
+           
+
+        }
+
+ 
+
+        label {
+
+            display: block;
+
+            margin-bottom: 10px;
+
+        }
+
+ 
+
+        input[type="text"],
+
+        input[type="tel"],
+
+        input[type="email"],
+
+        input[type="number"],
+
+        select,
+
+        textarea {
+
+            width: 100%;
+
+            padding: 8px;
+
+            margin-bottom: 10px;
+
+            border: 1px solid #ccc;
+
+            border-radius: 4px;
+
+        }
+
+        a {
+
+        text-decoration: none;
+
+    }
+
+ 
+
+        button[type="submit"] {
+
+            background-color: #4CAF50;
+
+            color: white;
+
+            padding: 10px 20px;
+
+            border: none;
+
+            border-radius: 4px;
+
+            cursor: pointer;
+
+            font-size: 16px;
+
+            margin: 0 auto;
+
+        }
+
+ 
+
+        button[type="submit"]:hover {
+
+            background-color: #45a049;
+
+            margin: 0 auto;
+
+        }
+
+    </style>
+
 </head>
+
 <body>
-    <h1>Kasadara Hiring Form</h1>
-    <form id="hiringForm" enctype="multipart/form-data">
+
+    <div class="container">
+
+   
+
+    <form id="hiringForm" enctype="multipart/form-data" method="POST">
+
+        <h1> We're hiring!</h1>
+
+        <p>we are looking for a passionate people to join our  fast growing team. Come, lets create wonders!</p>
+
+        <p>For more details, visit <a href="http://www.kasadara.com">www.kasadara.com</a></p><br>
+
         <label for="name">Name:</label>
+
         <input type="text" id="name" name="name" required><br><br>
 
+ 
+
         <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required><br><br>
+
+        <input type="tel" id="phone" name="phone" ><br><br>
+
+ 
 
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+
+        <input type="email" id="email" name="email" ><br><br>
+
+ 
 
         <label for="role">Role:</label>
-        <select id="role" name="role" required>
+
+        <select id="role" name="role" >
+
             <option value="Select Role">Select Role</option>
+
             <option value=".NET">.NET</option>
+
             <option value="Angular">Angular</option>
+
             <option value="SE - Trainee">SE - Trainee</option>
+
             <option value="HR/PMO/Management">HR/PMO/Management</option>
+
             <option value="Arc GIS">Arc GIS</option>
+
             <option value="Marketing">Marketing</option>
+
             <option value="QA">QA</option>
+
             <option value="Finance">Finance</option>
+
             <option value="Java">Java</option>
+
             <option value="Other">Other</option>
+
         </select><br><br>
 
+ 
+
         <label for="experience">Experience (In Years):</label>
-        <input type="number" id="experience" name="experience" required><br><br>
+
+        <input type="number" id="experience" name="experience" ><br><br>
+
+ 
 
         <label for="resume">Resume (PDF or Word):</label>
-        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required><br><br>
+
+        <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" ><br><br>
+
+ 
 
         <label for="noticePeriod">Notice Period / Tentative Joining Date:</label>
-        <input type="text" id="noticePeriod" name="noticePeriod" required><br><br>
+
+        <input type="text" id="noticePeriod" name="noticePeriod" ><br><br>
+
+ 
 
         <label for="location">Location:</label>
-        <input type="text" id="location" name="location" required><br><br>
+
+        <input type="text" id="location" name="location" ><br><br>
+
+ 
 
         <label for="expectedCTC">Expected CTC:</label>
-        <input type="text" id="expectedCTC" name="expectedCTC" required><br><br>
 
-        <label for="aboutYourself">Tell us about yourself:</label>
-        <textarea id="aboutYourself" name="aboutYourself" rows="4" required></textarea><br><br>
+        <input type="text" id="expectedCTC" name="expectedCTC" ><br><br>
 
-        <label for="howDidYouKnow">How did you know about us?</label>
-        <textarea id="howDidYouKnow" name="howDidYouKnow" rows="4" required></textarea><br><br>
+ 
+
+        <label for="aboutYourself">Tell us about yourself And How did you know about us?</label>
+
+        <textarea id="aboutYourself" name="aboutYourself" rows="4" ></textarea><br><br>
+
+ 
 
         <button type="submit">Submit</button>
+
     </form>
 
+</div>
+
     <script>
+
         document.getElementById("hiringForm").addEventListener("submit", function (event) {
+
             event.preventDefault();
-            submitForm();
+
+            if (validateForm()) {
+
+        submitForm();
+
+    }
+
         });
 
+        function validateForm() {
+
+
+
+    var phone = document.getElementById("phone").value;
+
+ 
+
+
+ 
+
+    // Phone number validation using a regular expression
+
+    var phoneRegex = /^\d{10}$/; // Assuming a 10-digit phone number
+
+    if (!phoneRegex.test(phone)) {
+
+        alert("Please enter a valid 10-digit phone number.");
+
+        return false;
+
+    }
+
+ 
+
+    return true;
+
+}
+
         function submitForm() {
+
             var formData = new FormData(document.getElementById("hiringForm"));
+
             var jsonData = {};
 
+ 
+
             formData.forEach(function (value, key) {
+
                 jsonData[key] = value;
+
             });
 
-            var url = "https://prod-165.westus.logic.azure.com:443/workflows/ec672ac489dd46b3a4f8dc657b1778c1/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=DJjt8ejsDhWpDASK97AuiL2L1cmKS05zre8jg03PZgU";
+            console.log(jsonData)
+
+            var url = "https://prod-26.westus.logic.azure.com:443/workflows/ea4d446f671843a2aff880f1eecafa15/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8pBXh2L51JFXCg4fFghIpa6913CYVhqsodVjgBvrmoE";
+
+ 
 
             fetch(url, {
+
                 method: "POST",
+
                 body: JSON.stringify(jsonData),
+
                 headers: {
+
                     "Content-Type": "application/json",
+
                 },
+
             })
-                .then(function (response) {
-                    if (response.ok) {
-                        alert("Form submitted successfully!");
-                        document.getElementById("hiringForm").reset();
-                    } else {
-                        alert("Form submission failed. Please try again later.");
-                    }
-                })
-                .catch(function (error) {
-                    console.error("Error:", error);
-                    alert("An error occurred. Please try again later.");
-                });
+
+            .then(function (response) {
+
+                if (response.status === 202) {
+
+                    alert("Form submitted successfully!");
+
+                    document.getElementById("hiringForm").reset();
+
+                } else {
+
+                    alert("Form submission failed. Please try again later.");
+
+                }
+
+            })
+
+            .catch(function (error) {
+
+                console.error("Error:", error);
+
+                alert("An error occurred. Please try again later.");
+
+            });
+
         }
+
     </script>
+
 </body>
+
 </html>
